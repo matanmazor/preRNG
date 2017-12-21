@@ -1,0 +1,7 @@
+setup.py
+preRNG/__init__.py
+prerng.egg-info/PKG-INFO
+prerng.egg-info/SOURCES.txt
+prerng.egg-info/dependency_links.txt
+prerng.egg-info/not-zip-safe
+prerng.egg-info/top_level.txt
