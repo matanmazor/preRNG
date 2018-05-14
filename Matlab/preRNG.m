@@ -8,7 +8,7 @@ function [protocol_sum] = preRNG(protocol_folder, subj_num)
 %    Protocol sum. This should be identical across all subjects.
 
 %%add lib and its subdirectories to path
-addpath(genpath('./lib'));
+addpath(genpath(fileparts(which('preRNG'))));
 
 %%extract protocol sum
 Opt = struct('Method', 'SHA-256', 'Input', 'file');
