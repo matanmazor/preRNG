@@ -1,7 +1,6 @@
 import random, hashlib, os
 
-
-def preRNG(protocol_folder, subj_num = 0):
+def preRNG(protocol_folder, subj_num = 0, save_seeds = 0):
     """
     Sets the random number generator seed according to the study protocol.
 
@@ -9,6 +8,8 @@ def preRNG(protocol_folder, subj_num = 0):
         protocol_folder:    Compressed folder, including all materials to be
                             preRNGistered.
         subj_num:           Serial number of current subject.
+        save_seeds:         If specified, save a csv file with subj_num
+                            subject sums.
 
     Returns:
         Protocol sum. This should be identical across all subjects.
@@ -66,7 +67,25 @@ def preRNG(protocol_folder, subj_num = 0):
 
     #use subj_sum as seed for the pseudorandom number generator
     random.seed(subj_sum)
-
+    
+    
+    #if save_seeds, iterate over 1:subj_num and create a csv file with the
+    #subject sums.
+    if save_seeds != 0:
+        
+        seeds = []
+        
+        for s in range(1,subj_num+1):
+            s_sum = hashlib.sha256(protocol_sum + str(s)).hexdigest();
+            s_sum = int(s_sum,16)
+            seeds.append(','.join([str(s),str(s_sum)]))
+        
+        seeds_str = "\n".join(seeds)
+        #save the seeds.csv file next to the protocol folder
+        fid = open(os.path.join(os.path.dirname(protocol_folder),"seeds.csv"),"w")
+        fid.write(seeds_str)
+        fid.close()
+        
     return protocol_sum
 
 if __name__ == "__main__":
