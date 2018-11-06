@@ -73,7 +73,7 @@ def preRNG(protocol_folder, subj_num = 0, save_seeds = 0):
     #subject sums.
     if save_seeds != 0:
         
-        seeds = []
+        seeds = ["subject number, seed"]
         
         for s in range(1,subj_num+1):
             s_sum = hashlib.sha256(protocol_sum + str(s)).hexdigest();
@@ -82,7 +82,7 @@ def preRNG(protocol_folder, subj_num = 0, save_seeds = 0):
         
         seeds_str = "\n".join(seeds)
         #save the seeds.csv file next to the protocol folder
-        fid = open(os.path.join(os.path.dirname(protocol_folder),"seeds.csv"),"w")
+        fid = open(os.path.join(os.path.dirname(protocol_folder),"rng_seeds.csv"),"w")
         fid.write(seeds_str)
         fid.close()
         

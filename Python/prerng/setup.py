@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(name='prerng',
-      version='0.1',
+      version='0.2',
       description='in-lab time-locking of study preregistration',
       url='https://github.com/matanmazor/preRNG/tree/master/Python/prerng',
       author='Mazor Bros',
