@@ -1,4 +1,5 @@
 #R version 3.3.2 
+
 library(digest)
 library(rngSetSeed)
 
@@ -11,6 +12,14 @@ library(rngSetSeed)
 #    Protocol sum. This should be identical across all subjects.
 
 preRNG <- function(prereg_dir, subj_num = 0){
+    
+    #Check package installations
+    if(!"digest" %in% installed.packages()){
+      stop("Please install the \"digest\ package:\n install.packages(\"digest\")")
+    }
+    if(!"rngSetSeed" %in% installed.packages()){
+      stop("Please install the \"rngSetSeed\" package:\n install.packages(\"rngSetSeed\")")
+    }
     
     #extract protocol sum
     protocol_sum <- digest(prereg_dir, "sha256", serialize = FALSE, file=TRUE)
